@@ -22,6 +22,8 @@
 - (IBAction)spin
 {
 	BOOL win = NO;
+	BOOL almost = NO;
+	
 	int numInRow = 1;
 	int lastVal = -1;
 	for (int i = 0; i < 5; i++) {
@@ -37,15 +39,21 @@
 		
 		[picker selectRow:newValue inComponent:i animated:YES];
 		[picker reloadComponent:i];
+		
 		if (numInRow > 3) {
 			win = YES;
+		}
+		if (numInRow > 2) {
+			almost = YES;
 		}
 	}
 	
 	if (win) {
 		winLabel.text = @"WINNAR IZ U!";
+	} else if (almost) {
+		winLabel.text = @"So close...";
 	} else {
-		winLabel.text = @"";
+		winLabel.text = @"Better luck next time";
 	}
 }
 
